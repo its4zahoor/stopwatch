@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { formatCounter } from "./util";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -29,9 +30,10 @@ function App() {
     setIsPaused(true);
   };
 
+  const time = formatCounter(counter);
   return (
     <div>
-      StopWatch {counter}
+      {time.h}:{time.m}:{time.s}:{time.ms}
       <div>
         <button onClick={playCounter}>Start</button>
         <button>Split</button>
