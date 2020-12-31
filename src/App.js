@@ -4,19 +4,23 @@ import { formatTime } from "./util";
 function App() {
   const [millisec, setMillisec] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
+  const [startTime, setStartTime] = useState(null);
 
   useEffect(() => {
     let timer = setInterval(() => {
       if (!isPaused) {
-        setMillisec((millisec) => {
-          return millisec + 1;
+        setMillisec(() => {
+          const elapsedTime = Date.now() - startTime;
+          return elapsedTime;
         });
       }
-    }, 1);
+    }, 4);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, startTime]);
 
   const startTimer = () => {
+    if (millisec === 0) setStartTime(Date.now());
+    if (isPaused) setStartTime(Date.now() - millisec);
     setIsPaused((p) => !p);
   };
 
