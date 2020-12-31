@@ -11,3 +11,7 @@ An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch A
 - [ ] Add split time list
 - [ ] Add styling
 - [ ] Extract timer logic into a custom hook say useTimer
+
+### Issues
+
+- [ ] Rewrite timer logic using elapsed time, [Issue # 1](../../issues/1)
