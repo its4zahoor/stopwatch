@@ -1,4 +1,4 @@
-export const formatCounter = (mSec) => {
+export const formatTime = (mSec) => {
   const ms = mSec % 1000;
   const s = Math.floor(mSec / 1000);
   const m = Math.floor(s / 60);
