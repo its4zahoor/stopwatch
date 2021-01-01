@@ -14,4 +14,4 @@ An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch A
 
 ### Issues
 
-- [ ] Rewrite timer logic using elapsed time, [Issue # 1](../../issues/1)
+- [x] Rewrite timer logic using elapsed time, [Issue # 1](../../issues/1)

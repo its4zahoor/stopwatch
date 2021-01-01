@@ -1,43 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { formatCounter } from "./util";
+import { formatTime } from "./util";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [millisec, setMillisec] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
+  const [startTime, setStartTime] = useState(null);
 
   useEffect(() => {
     let timer = setInterval(() => {
       if (!isPaused) {
-        setCounter((counter) => {
-          return counter + 1;
+        setMillisec(() => {
+          const elapsedTime = Date.now() - startTime;
+          return elapsedTime;
         });
       }
-    }, 1);
+    }, 4);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, [isPaused, startTime]);
 
-  const playCounter = () => {
-    if (counter === 0) {
-      setIsPaused(false);
-      return;
-    }
-
+  const startTimer = () => {
+    if (millisec === 0) setStartTime(Date.now());
+    if (isPaused) setStartTime(Date.now() - millisec);
     setIsPaused((p) => !p);
   };
 
-  const resetCounter = () => {
-    setCounter(0);
+  const resetTimer = () => {
+    setMillisec(0);
     setIsPaused(true);
   };
 
-  const time = formatCounter(counter);
+  const time = formatTime(millisec);
   return (
     <div>
       {time.h}:{time.m}:{time.s}:{time.ms}
       <div>
-        <button onClick={playCounter}>Start</button>
+        <button onClick={startTimer}>Start</button>
         <button>Split</button>
-        <button onClick={resetCounter}>Reset</button>
+        <button onClick={resetTimer}>Reset</button>
       </div>
     </div>
   );
