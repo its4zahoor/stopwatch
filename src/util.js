@@ -9,5 +9,5 @@ export const formatTime = (mSec) => {
   const padM = m.toString().padStart(2, "0");
   const padH = h.toString().padStart(2, "0");
 
-  return { ms: padMs, s: padS, m: padM, h: padH };
+  return `${padH}:${padM}:${padS}.${padMs}`;
 };

@@ -7,8 +7,9 @@ An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch A
 - [x] Add stopwatch skeleton (timer counter)
 - [x] Add start/pause and reset functionality
 - [x] Add proper hh:mm:ss:ttt time formatting
-- [ ] Add time split functionality
-- [ ] Add split time list
+- [x] Add time split functionality
+- [x] Add split time list
+- [ ] Add split reason
 - [ ] Add styling
 - [ ] Extract timer logic into a custom hook say useTimer
 
