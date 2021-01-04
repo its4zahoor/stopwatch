@@ -3,10 +3,14 @@ const M_mSec = 60 * 1000;
 const S_mSec = 1000;
 
 export const formatTime = (mSec) => {
-  const ms = mSec % 1000;
-  const s = Math.floor((mSec / S_mSec) % 60);
-  const m = Math.floor((mSec / M_mSec) % 60);
-  const h = Math.floor(mSec / H_mSec);
+  let left = mSec;
+  const h = Math.floor(left / H_mSec);
+  left -= h * H_mSec;
+  const m = Math.floor(left / M_mSec);
+  left -= m * M_mSec;
+  const s = Math.floor(left / S_mSec);
+  left -= s * S_mSec;
+  const ms = left % 1000;
 
   const padMs = ms.toString().padStart(3, "0");
   const padS = s.toString().padStart(2, "0");
