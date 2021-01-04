@@ -6,6 +6,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(true);
   const [startTime, setStartTime] = useState(null);
   const [splitList, setSplitList] = useState([]);
+  const [splitIntervals, setSplitIntervals] = useState([]);
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -18,6 +19,15 @@ function App() {
     }, 4);
     return () => clearInterval(timer);
   }, [isPaused, startTime]);
+
+  useEffect(() => {
+    const intervalsList = splitList.map((x, i, arr) => {
+      if (i === 0) return x;
+      return x - arr[i - 1];
+    });
+
+    setSplitIntervals(intervalsList);
+  }, [splitList]);
 
   const startTimer = () => {
     if (millisec === 0) setStartTime(Date.now());
@@ -32,7 +42,7 @@ function App() {
   };
 
   const splitTimer = () => {
-    setSplitList((splitList) => [millisec - (splitList[0] || 0), ...splitList]);
+    setSplitList((splitList) => [...splitList, millisec]);
   };
 
   return (
@@ -44,7 +54,7 @@ function App() {
         <button onClick={resetTimer}>Reset</button>
       </div>
       <div>
-        {[...splitList].reverse().map((x) => (
+        {splitIntervals.map((x) => (
           <div key={x}>{formatTime(x)}</div>
         ))}
       </div>
