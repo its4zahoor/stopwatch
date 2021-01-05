@@ -30,8 +30,7 @@ function App() {
   }, [splitList]);
 
   const startTimer = () => {
-    if (millisec === 0) setStartTime(Date.now());
-    if (isPaused) setStartTime(Date.now() - millisec);
+    setStartTime(Date.now() - millisec);
     setIsPaused((p) => !p);
   };
 
