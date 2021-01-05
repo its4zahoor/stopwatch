@@ -6,8 +6,6 @@ function App() {
   const [isPaused, setIsPaused] = useState(true);
   const [startTime, setStartTime] = useState(null);
   const [splitList, setSplitList] = useState([]);
-  const [splitIntervals, setSplitIntervals] = useState([]);
-  const [splitReasons, setSplitReasons] = useState([]);
 
   useEffect(() => {
     if (!isPaused) {
@@ -21,15 +19,6 @@ function App() {
     }
   }, [isPaused, startTime]);
 
-  useEffect(() => {
-    const intervalsList = splitList.map((x, i, arr) => {
-      if (i === 0) return x;
-      return x - arr[i - 1];
-    });
-
-    setSplitIntervals(intervalsList);
-  }, [splitList]);
-
   const startTimer = () => {
     setStartTime(Date.now() - millisec);
     setIsPaused((p) => !p);
@@ -40,7 +29,6 @@ function App() {
     setMillisec(0);
     setIsPaused(true);
     setSplitList([]);
-    setSplitReasons([]);
   };
 
   const splitTimer = () => {
@@ -48,8 +36,7 @@ function App() {
   };
 
   const addSplitValue = (reason) => {
-    setSplitReasons((splitReasons) => [...splitReasons, reason]);
-    setSplitList((splitList) => [...splitList, millisec]);
+    setSplitList((split) => [...split, { millisec, reason }]);
   };
 
   const isReset = millisec === 0;
@@ -68,11 +55,14 @@ function App() {
         </button>
       </div>
       <div>
-        {splitIntervals.map((x, i) => (
-          <div key={x}>
-            {formatTime(x)} {splitReasons[i]}
-          </div>
-        ))}
+        {splitList.map((x, i, arr) => {
+          const interval = i > 0 ? x.millisec - arr[i - 1].millisec : x.millisec;
+          return (
+            <div key={x.millisec}>
+              #{i} {formatTime(interval)} {x.reason}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
