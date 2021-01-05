@@ -9,15 +9,15 @@ function App() {
   const [splitIntervals, setSplitIntervals] = useState([]);
 
   useEffect(() => {
-    let timer = setInterval(() => {
-      if (!isPaused) {
+    if (!isPaused) {
+      let timer = setInterval(() => {
         setMillisec(() => {
           const elapsedTime = Date.now() - startTime;
           return elapsedTime;
         });
-      }
-    }, 4);
-    return () => clearInterval(timer);
+      }, 4);
+      return () => clearInterval(timer);
+    }
   }, [isPaused, startTime]);
 
   useEffect(() => {
