@@ -45,13 +45,20 @@ function App() {
     setSplitList((splitList) => [...splitList, millisec]);
   };
 
+  const isReset = millisec === 0;
+  const timerState = !isPaused ? "Pause" : "Start";
+
   return (
     <div>
       {formatTime(millisec)}
       <div>
-        <button onClick={startTimer}>Start</button>
-        <button onClick={splitTimer}>Split</button>
-        <button onClick={resetTimer}>Reset</button>
+        <button onClick={startTimer}>{timerState}</button>
+        <button disabled={isReset || isPaused} onClick={splitTimer}>
+          Split
+        </button>
+        <button disabled={isReset || !isPaused} onClick={resetTimer}>
+          Reset
+        </button>
       </div>
       <div>
         {splitIntervals.map((x) => (
