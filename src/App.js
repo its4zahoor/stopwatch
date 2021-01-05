@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { formatTime } from "./util";
 
 function App() {
-  const [millisec, setMillisec] = useState(0);
+  const [time, setTime] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
   const [startTime, setStartTime] = useState(null);
   const [splitList, setSplitList] = useState([]);
@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     if (!isPaused) {
       let timer = setInterval(() => {
-        setMillisec(() => {
+        setTime(() => {
           const elapsedTime = Date.now() - startTime;
           return elapsedTime;
         });
@@ -20,13 +20,13 @@ function App() {
   }, [isPaused, startTime]);
 
   const startTimer = () => {
-    setStartTime(Date.now() - millisec);
+    setStartTime(Date.now() - time);
     setIsPaused((p) => !p);
     if (!isPaused) addSplitValue("Pause");
   };
 
   const resetTimer = () => {
-    setMillisec(0);
+    setTime(0);
     setIsPaused(true);
     setSplitList([]);
   };
@@ -36,15 +36,15 @@ function App() {
   };
 
   const addSplitValue = (reason) => {
-    setSplitList((split) => [...split, { millisec, reason }]);
+    setSplitList((split) => [...split, { time, reason }]);
   };
 
-  const isReset = millisec === 0;
+  const isReset = time === 0;
   const timerState = !isPaused ? "Pause" : "Start";
 
   return (
     <div>
-      {formatTime(millisec)}
+      {formatTime(time)}
       <div>
         <button onClick={startTimer}>{timerState}</button>
         <button disabled={isReset || isPaused} onClick={splitTimer}>
@@ -56,9 +56,9 @@ function App() {
       </div>
       <div>
         {splitList.map((x, i, arr) => {
-          const interval = i > 0 ? x.millisec - arr[i - 1].millisec : x.millisec;
+          const interval = i > 0 ? x.time - arr[i - 1].time : x.time;
           return (
-            <div key={x.millisec}>
+            <div key={x.time}>
               #{i} {formatTime(interval)} {x.reason}
             </div>
           );
