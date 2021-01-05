@@ -7,6 +7,7 @@ function App() {
   const [startTime, setStartTime] = useState(null);
   const [splitList, setSplitList] = useState([]);
   const [splitIntervals, setSplitIntervals] = useState([]);
+  const [splitReasons, setSplitReasons] = useState([]);
 
   useEffect(() => {
     if (!isPaused) {
@@ -32,15 +33,22 @@ function App() {
   const startTimer = () => {
     setStartTime(Date.now() - millisec);
     setIsPaused((p) => !p);
+    if (!isPaused) addSplitValue("Pause");
   };
 
   const resetTimer = () => {
     setMillisec(0);
     setIsPaused(true);
     setSplitList([]);
+    setSplitReasons([]);
   };
 
   const splitTimer = () => {
+    addSplitValue("Split");
+  };
+
+  const addSplitValue = (reason) => {
+    setSplitReasons((splitReasons) => [...splitReasons, reason]);
     setSplitList((splitList) => [...splitList, millisec]);
   };
 
@@ -60,8 +68,10 @@ function App() {
         </button>
       </div>
       <div>
-        {splitIntervals.map((x) => (
-          <div key={x}>{formatTime(x)}</div>
+        {splitIntervals.map((x, i) => (
+          <div key={x}>
+            {formatTime(x)} {splitReasons[i]}
+          </div>
         ))}
       </div>
     </div>
