@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { formatTime } from "./util";
+import "./App.css";
 
 function App() {
   const [time, setTime] = useState(0);
@@ -22,7 +23,7 @@ function App() {
   const startTimer = () => {
     setStartTime(Date.now() - time);
     setIsPaused((p) => !p);
-    if (!isPaused) addSplitValue("Pause");
+    if (!isPaused) addSplitValue("pause");
   };
 
   const resetTimer = () => {
@@ -32,7 +33,7 @@ function App() {
   };
 
   const splitTimer = () => {
-    addSplitValue("Split");
+    addSplitValue("split");
   };
 
   const addSplitValue = (reason) => {
@@ -41,25 +42,43 @@ function App() {
 
   const isReset = time === 0;
   const timerState = !isPaused ? "Pause" : "Start";
-
+  const formattedTime = formatTime(time);
   return (
-    <div>
-      {formatTime(time)}
+    <div className="App">
+      <div className="display">
+        <span>{formattedTime.slice(0, -2)}</span>
+        <span className="ms-end">{formattedTime.slice(-2)}</span>
+      </div>
+      <div></div>
       <div>
-        <button onClick={startTimer}>{timerState}</button>
-        <button disabled={isReset || isPaused} onClick={splitTimer}>
+        <button className={isPaused ? "start" : "pause"} onClick={startTimer}>
+          {timerState}
+        </button>
+        <button
+          className="split"
+          disabled={isReset || isPaused}
+          onClick={splitTimer}
+        >
           Split
         </button>
-        <button disabled={isReset || !isPaused} onClick={resetTimer}>
+        <button
+          className="reset"
+          disabled={isReset || !isPaused}
+          onClick={resetTimer}
+        >
           Reset
         </button>
       </div>
+      {splitList.length > 0 && <hr />}
       <div>
         {splitList.map((x, i, arr) => {
-          const interval = i > 0 ? x.time - arr[i - 1].time : x.time;
+          const { time, reason } = x;
+          const interval = i > 0 ? time - arr[i - 1].time : time;
           return (
-            <div key={x.time}>
-              #{i} {formatTime(interval)} {x.reason}
+            <div className="split-item" key={time}>
+              <div>#{i + 1}</div>
+              <div className={reason}>{formatTime(interval)}</div>
+              <div>{reason}</div>
             </div>
           );
         })}

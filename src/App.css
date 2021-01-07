@@ -1,0 +1,103 @@
+:root {
+  --gray-color: #b7b8b9;
+  --start-color: #18a69d;
+  --pause-color: #fb657f;
+  --split-color: #f29e26;
+  --reset-color: #4487d0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.App {
+  width: min-content;
+  margin: auto;
+  padding: 1rem;
+}
+
+.display {
+  font-size: 10rem;
+}
+
+.display > .ms-end {
+  font-size: 2.5rem;
+}
+
+button {
+  height: 6rem;
+  width: 6rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  margin: 0px 0.5rem;
+  border: none;
+  color: white;
+}
+
+button.start {
+  background-color: var(--start-color);
+}
+
+button.pause {
+  background-color: var(--pause-color);
+}
+
+button.split {
+  background-color: var(--split-color);
+}
+
+button.reset {
+  background-color: var(--reset-color);
+}
+
+button:disabled {
+  border: 1px solid var(--gray-color);
+  background-color: white;
+  color: var(--gray-color);
+}
+
+hr {
+  width: 100%;
+  margin: 4rem 0 1rem 0;
+}
+
+.split-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.split-item {
+  display: flex;
+  text-transform: capitalize;
+  color: var(--gray-color);
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 1.6rem;
+}
+
+.split-item > div {
+  flex: 1 1 0;
+}
+
+.split-item > :first-child {
+  flex: 0 0 8rem;
+  color: #696464;
+}
+
+.split-item > :nth-child(2) {
+  flex: 3 1 0;
+}
+
+.split-item > .pause {
+  color: var(--pause-color);
+}
+
+.split-item > .split {
+  color: var(--split-color);
+}
