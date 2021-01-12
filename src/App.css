@@ -39,6 +39,14 @@ button {
   color: white;
 }
 
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
 button.start {
   background-color: var(--start-color);
 }
