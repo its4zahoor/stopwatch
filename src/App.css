@@ -109,3 +109,10 @@ hr {
 .split-item > .split {
   color: var(--split-color);
 }
+
+.current.split {
+  color: var(--split-color);
+  font-size: 2rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}

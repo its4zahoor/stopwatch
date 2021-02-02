@@ -12,6 +12,7 @@ An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch A
 - [x] Enable/disable buttons in different states
 - [x] Add split reason
 - [x] Add styling
+- [x] Display current split time
 - [ ] Extract timer logic into a custom hook say useTimer
 
 ### Issues
