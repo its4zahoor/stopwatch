@@ -17,6 +17,9 @@ The app is deployed on Netlify using the GitHub integeration, see [Live Demo Her
 - [x] Add split reason
 - [x] Add styling
 - [x] Display current split time
+- [ ] Make responsive
+- [ ] Add dark theme
+- [ ] Optimize rerendering
 - [ ] Extract timer logic into a custom hook say useTimer
 
 ### Issues
