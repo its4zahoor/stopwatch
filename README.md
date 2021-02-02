@@ -2,6 +2,10 @@
 
 An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch Assignment](https://github.com/emumba-com/handbooks/blob/master/Frontend/Assignments/stopwatch/README.md).
 
+## Live Demo
+
+The app is deployed on Netlify using the GitHub integeration, see [Live Demo Here](https://stopwatch-by-zahoor.netlify.app/).
+
 ### TODOs
 
 - [x] Add stopwatch skeleton (timer counter)
