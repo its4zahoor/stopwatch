@@ -14,9 +14,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "eject": "react-scripts eject"
   },
+  "type": "module",
   "eslintConfig": {
     "extends": [
       "react-app",
