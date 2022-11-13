@@ -44,6 +44,7 @@ function App() {
     const { length, [length - 2]: last2nd, [length - 1]: last } = splitList;
     if (isReset) return "SPLIT TIME";
     if (!last) return formatTime(time);
+    if (!last2nd) return formatTime(last.time);
     if (isPaused) return formatTime(last.time - last2nd.time);
     return formatTime(time - last.time);
   };
