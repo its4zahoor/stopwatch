@@ -5,6 +5,7 @@ An implementation of Stopwatch using ReactJS as described in [Emumba Stopwatch A
 ## Live Demo
 
 The app is deployed on Netlify using the GitHub integeration, see [Live Demo Here](https://stopwatch-by-zahoor.netlify.app/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/adff91be-b1a4-419a-a7de-8741d1415822/deploy-status)](https://app.netlify.com/sites/stopwatch-by-zahoor/deploys)
 
 ### TODOs
 
